@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+elementFormDefault="unqualified">
+
+<xsd:element name="Songs" >
+<xsd:complexType> <!-- Aqui abro el songs -->
+<xsd:sequence>
+<xsd:element name="Anio"  type="tipo_anio" minOccurs="1" maxOccurs="unbounded" />
+<xsd:element name="Pais" maxOccurs="unbounded" minOccurs="1">
+	
+  <xsd:complexType> <!-- Aqui abro el pais -->
+	<xsd:sequence>
+	<xsd:element name="Disco" maxOccurs="unbounded"> <!-- Aqui abro el disco -->
+		<xsd:complexType>
+			<xsd:sequence>
+    			<xsd:element name="Titulo" type="xsd:string"/>
+			<xsd:element name="Premios"  minOccurs="0" > <!-- variable premios opcional con un maximo de 3 premio -->
+				<xsd:complexType>
+					<xsd:sequence>
+					<xsd:element name="Premio" maxOccurs="3" minOccurs="0" type="tipo_premios"/>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="Interprete" type="xsd:string"/>
+			
+			<xsd:element name="Cancion" maxOccurs="unbounded" minOccurs="1"> <!-- Aqui abro la cancion minimo 1 cancion por disco -->
+				<xsd:complexType mixed="true">
+					<xsd:sequence>
+					<xsd:element name="Titulo" type="xsd:string"/> <!-- IGUAL PUEDO REPETIR LA VARIABLE DEL DISCO PREGUNTAR -->
+					<xsd:element name="Duracion" type="duracion"/> <!-- entre 0 y 600 sec -->
+					<xsd:element name="Genero" type="tipo_genero" /> <!-- solo 4 tipos Rock Pop Country Balada-->
+					<xsd:element name="Version" minOccurs="0" >
+						<xsd:complexType mixed="true">
+							<xsd:sequence>
+								<xsd:choice>
+								<xsd:element name="Titulo" type="xsd:string" />
+								<xsd:element name="Idc" type="xsd:string" />
+								</xsd:choice>
+								<xsd:element name="IML" type="xsd:anyURI" minOccurs="1"/> <!--puede ser relativo(url general + iml) o absoluto http strin o tipouri ?...-->
+							</xsd:sequence>
+						<xsd:attribute name="anio" type="xsd:positiveInteger" use="required"/>
+						</xsd:complexType>
+						</xsd:element>
+					</xsd:sequence>
+				<xsd:attribute name="idc" type="tipo_cancion" use="required"/> <!-- formato especifico XXXX-XXX-XXX-XX -->
+				</xsd:complexType>
+				
+  			</xsd:element> <!-- Aqui cierro la cancion -->
+		</xsd:sequence>
+		<xsd:attribute name="langs" type="tipo_lang" /> <!-- Si no existe es el indicado en el pais -->
+		<xsd:attribute name="idd" type="tipo_idd" use="required"/> <!-- formato especifico XXXX-XXX-XXX -->
+  		</xsd:complexType> <!-- complex disco -->
+	        
+       </xsd:element> <!-- Aqui cierro el disco -->
+	</xsd:sequence>
+   <xsd:attribute name="pais" type="xsd:string" use="required"/>
+   <xsd:attribute name="lang" type="tipo_lang" use="required"/> 
+  </xsd:complexType> <!-- Aqui cierro el complex pais -->
+  
+</xsd:element>
+</xsd:sequence>
+</xsd:complexType> <!-- complex el Song -->
+</xsd:element>
+
+<!-- - - - - -  - -  RESTRICCIONES- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  -->
+
+<!-- RESTICCION DE LA DURACION -->
+<xsd:simpleType name="duracion">
+    <xsd:restriction base="xsd:integer">
+      <xsd:minInclusive value="0"/>
+      <xsd:maxInclusive value="599"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+
+<!-- RESTICCION DE LOS GENEROS -->
+<xsd:simpleType name="tipo_genero">
+    <xsd:restriction base="xsd:string">
+      <xsd:enumeration value="Rock"/>
+      <xsd:enumeration value="Pop"/>
+      <xsd:enumeration value="Country"/>
+      <xsd:enumeration value="Balada"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+
+<!-- RESTICCION DE LOS ANIOS -->
+ <xsd:simpleType name="tipo_anio">
+    <xsd:restriction base="xsd:integer">
+       <xsd:minInclusive value="1990"/>
+      <xsd:maxInclusive value="2018"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+
+
+<!-- RESTICCION DE LOS PREMIOS -->
+<xsd:simpleType name="tipo_premios">
+    <xsd:restriction base="xsd:string">
+      <xsd:enumeration value="DiscoDeOro"/>
+      <xsd:enumeration value="Grammy"/>
+      <xsd:enumeration value="LamparaMinera"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+
+<!-- RESTICCION DE LOS IDD -->
+ <xsd:simpleType name="tipo_idd">
+     <xsd:restriction base="xsd:string">
+            <xsd:pattern value="[0-9]{4}(-[0-9]{3})(-[0-9]{3})"/>
+        </xsd:restriction>
+  </xsd:simpleType>
+
+<!-- RESTICCION DE LOS IDC -->
+ <xsd:simpleType name="tipo_cancion">
+     <xsd:restriction base="xsd:string">
+            <xsd:pattern value="[0-9]{4}(-[0-9]{3})(-[0-9]{3})(-[0-9]{2})"/>
+        </xsd:restriction>
+  </xsd:simpleType>
+
+
+<!-- RESTICCION DE lang -->
+ <xsd:simpleType name="tipo_lang">
+     <xsd:restriction base="xsd:string">
+            <xsd:pattern value="([a-z]{2})(\s[a-z]{2})*"/>
+        </xsd:restriction>
+  </xsd:simpleType>
+
+
+</xsd:schema> 

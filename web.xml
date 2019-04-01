@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE web-app 
+          PUBLIC "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN" 
+         "http://java.sun.com/dtd/web-app_2_3.dtd">
+<web-app version="2.4">
+     <display-name>P2IM </display-name>
+     <description> Practica 2 de sint </description>
+     <servlet>
+           <servlet-name>P2IM</servlet-name>
+           <servlet-class> p2.Sint143P2 </servlet-class>
+     </servlet>
+     <servlet-mapping>
+           <servlet-name>P2IM</servlet-name>
+           <url-pattern> /P2IM </url-pattern>   
+</servlet-mapping>
+</web-app>

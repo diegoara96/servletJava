@@ -1,0 +1,42 @@
+
+
+body {
+    background-image: url(fondo.jpg);
+    background-size: 1000px
+    
+  }
+#centrada{
+text-align: center;
+}
+form{
+  margin-left: 20px;
+ 
+
+}
+#centro{
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+  background: rgba(216, 151, 10, 0.40);
+  font-family: Arial, Helvetica, sans-serif;
+  
+  }
+  
+  
+
+  
+  .boton {
+      background-color: rgba(235, 119, 12, 0.349); 
+      color: black; 
+      border: 4px solid rgb(233, 117, 10);
+      transition-duration: 0.4s;
+      border-radius: 8px;
+      cursor: pointer;
+      padding: 16px;
+  }
+  
+  .boton:hover {
+      background-color: rgb(233, 117, 10);
+      color: white;
+  }
+
