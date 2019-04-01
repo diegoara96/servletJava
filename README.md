@@ -1,3 +1,9 @@
 # servletJava
-practica para servicios de internet usando XML,Servlets,DOM y TOMCAT
-javac -classpath ~diego/apache-tomcat/lib/servlet-api.jar Cancion.java Disco.java Sint143P2.java
+Proyecto realizado en el marco de la asignatura de Servicios de Internet de Ingenieria de Telecomunicaciones. El objetivo es desarrollar soltura con XML,Servlets,DOM y TOMCAT
+
+## Compilación
+
+´´´bash
+javac -classpath ~usuario/apache-tomcat/lib/servlet-api.jar Cancion.java Disco.java Sint143P2.java
+´´´
+
