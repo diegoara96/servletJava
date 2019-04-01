@@ -3,7 +3,7 @@ Proyecto realizado en el marco de la asignatura de Servicios de Internet de Inge
 
 ## Compilación
 
-´´´bash
+```bash
 javac -classpath ~usuario/apache-tomcat/lib/servlet-api.jar Cancion.java Disco.java Sint143P2.java
-´´´
+```
 
