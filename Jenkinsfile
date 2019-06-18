@@ -10,6 +10,7 @@ pipeline {
       agent {
         docker {
           image 'ubuntu'
+          args '-it'
         }
 
       }
