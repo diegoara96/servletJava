@@ -10,7 +10,7 @@ pipeline {
       agent {
         docker {
           image 'ubuntu'
-          args '--privileged=true'
+          args '-u 0'
         }
 
       }
