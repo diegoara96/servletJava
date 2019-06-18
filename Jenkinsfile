@@ -10,12 +10,13 @@ pipeline {
       agent {
         docker {
           image 'ubuntu'
-          args '-u 0:0'
         }
 
       }
       steps {
-        sh 'ls'
+        sh '''mkdir test
+touch file.txt
+ls'''
       }
     }
   }
