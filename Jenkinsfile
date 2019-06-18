@@ -1,9 +1,8 @@
-pipeline {
-    agent any 
+node {
     stages {
         stage('Build') {
             steps {
-               echo build
+               checkout scm
             }
         }
         stage('Test') { 
