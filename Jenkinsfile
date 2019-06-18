@@ -4,6 +4,7 @@ node {
                checkout scm
         }
         stage('Test') { 
+                echo 'otro test'
                 echo 'test' 
         }
         stage('Deploy') { 
