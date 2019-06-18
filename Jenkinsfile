@@ -25,5 +25,10 @@ touch "target/server.war"'''
         }
       }
     }
+    stage('ffff') {
+      steps {
+        sh 'ls'
+      }
+    }
   }
 }
