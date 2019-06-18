@@ -1,23 +1,28 @@
 pipeline {
   agent any
   stages {
-    stage('test') {
-      steps {
-        echo 'testing'
-      }
-    }
-    stage('build image') {
-      agent {
-        docker {
-          image 'ubuntu'
-          args '-it'
-        }
+    stage('build') {
+      parallel {
+        stage('server') {
+          agent {
+            docker {
+              image 'maven:3.5-jdk-8-slim'
+            }
 
-      }
-      steps {
-        sh '''mkdir test
-touch file.txt
-ls'''
+          }
+          steps {
+            sh '''echo "test"
+mvn -version
+mkdir -p target
+touch "target/server.war"'''
+            stash(name: 'server', includes: '**/*.war')
+          }
+        }
+        stage('client') {
+          steps {
+            sh 'echo "test"'
+          }
+        }
       }
     }
   }
